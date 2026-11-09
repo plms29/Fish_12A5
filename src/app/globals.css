@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Bể cá 12A5 — bộ nhận diện
+   Lấy cảm hứng từ logo ASYMPTOTIC: viền mực dày, sticker,
+   xanh cỏ + mint, lưới nhị phân. Không gradient, không kính mờ.
+   ========================================================= */
+
+:root {
+  --ink: #17181d;
+  --ink-soft: #3a3c45;
+  --muted: #5d6070;
+  --paper: #f5f6ee;
+  --paper-2: #eceee2;
+  --card: #ffffff;
+  --grass: #5c9e38;
+  --grass-deep: #3d7420;
+  --mint: #d3f2bf;
+  --mint-soft: #e8f8dc;
+  --sun: #f2b33d;
+  --tomato: #d9483b;
+  --sky: #3c8fd8;
+  --line: 2px solid var(--ink);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-card: var(--card);
+  --color-grass: var(--grass);
+  --color-grass-deep: var(--grass-deep);
+  --color-mint: var(--mint);
+  --color-mint-soft: var(--mint-soft);
+  --color-sun: var(--sun);
+  --color-tomato: var(--tomato);
+  --color-sky: var(--sky);
+
+  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-bevn);
+  --font-mono: var(--font-jbmono);
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-bevn), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--mint);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 2px;
+}
+
+/* ---------- Sticker: viền mực + bóng cứng ---------- */
+@utility sticker {
+  background: var(--card);
+  border: var(--line);
+  border-radius: 14px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+@utility sticker-sm {
+  border: var(--line);
+  border-radius: 10px;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* Nhấn nút: bóng thu lại như ấn sticker xuống mặt bàn */
+@utility press {
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease;
+  &:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--ink);
+  }
+}
+
+/* ---------- Lưới nhị phân (mờ, chỉ dùng từng mảng) ---------- */
+@utility binary-grid {
+  background-color: var(--grass);
+  background-image: url("/binary-tile.svg");
+  background-size: 168px 168px;
+}
+
+@utility binary-faint {
+  background-image: url("/binary-tile-faint.svg");
+  background-size: 168px 168px;
+}
+
+/* Dấu bút dạ mint dưới chữ */
+@utility marker {
+  background: linear-gradient(transparent 58%, var(--mint) 58%, var(--mint) 92%, transparent 92%);
+  padding: 0 0.08em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* =========================================================
+   Nội dung bài nhật ký
+   ========================================================= */
+.prose-diary {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+.prose-diary > * + * {
+  margin-top: 1.1em;
+}
+.prose-diary h2,
+.prose-diary h3 {
+  font-family: var(--font-bricolage);
+  color: var(--ink);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-top: 1.8em;
+}
+.prose-diary h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+.prose-diary h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.prose-diary strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.prose-diary a {
+  color: var(--grass-deep);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.prose-diary ul {
+  list-style: none;
+  padding-left: 0;
+}
+.prose-diary ul li {
+  position: relative;
+  padding-left: 1.4em;
+}
+.prose-diary ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.2em;
+  top: 0.72em;
+  width: 0.5em;
+  height: 0.5em;
+  background: var(--grass);
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+.prose-diary ol {
+  list-style: decimal;
+  padding-left: 1.4em;
+}
+.prose-diary ol li::marker {
+  font-family: var(--font-jbmono);
+  font-weight: 700;
+  color: var(--grass-deep);
+}
+.prose-diary blockquote {
+  border-left: 4px solid var(--grass);
+  background: var(--mint-soft);
+  padding: 0.8em 1.1em;
+  border-radius: 0 10px 10px 0;
+  color: var(--ink);
+}
+.prose-diary code {
+  font-family: var(--font-jbmono);
+  font-size: 0.9em;
+  background: var(--paper-2);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.prose-diary hr {
+  border: 0;
+  height: 14px;
+  background-image: radial-gradient(circle, var(--ink) 1.6px, transparent 2px);
+  background-size: 22px 14px;
+  background-position: center;
+  background-repeat: repeat-x;
+  max-width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.prose-diary img,
+.prose-diary video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--line);
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 var(--ink);
+  background: var(--paper-2);
+}
+/* Ảnh nghiêng nhẹ xen kẽ như dán vào sổ */
+.prose-diary img:nth-of-type(odd) {
+  transform: rotate(-0.6deg);
+}
+.prose-diary img:nth-of-type(even) {
+  transform: rotate(0.5deg);
+}
+.prose-diary div[data-youtube-video] {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.prose-diary div[data-youtube-video] iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.prose-diary p:empty {
+  min-height: 1em;
+}
+
+/* Trình soạn thảo */
+.tiptap {
+  outline: none;
+  min-height: 320px;
+}
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: #9a9caa;
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+.tiptap img.ProseMirror-selectednode,
+.tiptap video.ProseMirror-selectednode,
+.tiptap div[data-youtube-video].ProseMirror-selectednode {
+  outline: 3px solid var(--sky);
+  outline-offset: 3px;
+}
