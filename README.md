@@ -29,7 +29,7 @@ Mở http://localhost:3000. File `.env` cần các biến trong `.env.example`.
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY` (giữ bí mật)
-   - `NEXT_PUBLIC_SITE_URL` = địa chỉ web sau khi deploy, ví dụ `https://fish-12a5.vercel.app`
+   (Có thể dán nguyên 3 dòng biến trong `.env` vào ô nhập của Vercel.)
 4. Bấm **Deploy**. Từ đó mỗi lần push lên `main`, Vercel tự cập nhật web.
 
 ## Database
