@@ -14,7 +14,7 @@ export function LoginForm() {
         required
         maxLength={60}
         autoComplete="nickname"
-        placeholder="Ví dụ: Minh Anh"
+        placeholder="Ví dụ: Minh Sơn"
         hint="Tên này được ghi dưới bài bạn viết."
       />
       <Field
