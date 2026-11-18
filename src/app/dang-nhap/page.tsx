@@ -5,7 +5,7 @@ import { LoginForm } from "./login-form";
 export const metadata: Metadata = { title: "Đăng nhập" };
 
 export default async function LoginPage({ searchParams }: PageProps<"/dang-nhap">) {
-  const { loi } = await searchParams;
+  const { loi, next } = await searchParams;
   return (
     <AuthShell eyebrow="Dành cho người giữ sổ" title="Nhập mã để viết nhật ký">
       {loi === "khong-co-quyen" && (
@@ -13,7 +13,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/dang-nhap"
           Tài khoản này chưa có quyền viết bài.
         </p>
       )}
-      <LoginForm />
+      <LoginForm next={typeof next === "string" ? next : undefined} />
     </AuthShell>
   );
 }

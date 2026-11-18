@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DateStamp, Tag } from "@/components/bits";
+import { Comments } from "@/components/comments";
 import { getEntryBySlug, getNeighbours, getPhases } from "@/lib/data";
 import { formatLongDate, mediaUrl } from "@/lib/format";
 import { cleanEntryHtml } from "@/lib/sanitize";
@@ -67,6 +68,8 @@ export default async function EntryPage({ params }: PageProps<"/nhat-ky/[slug]">
       <hr className="my-8 border-0 border-t-2 border-dashed border-ink/25" />
 
       <div className="prose-diary" dangerouslySetInnerHTML={{ __html: html }} />
+
+      <Comments entryId={entry.id} slug={entry.slug} />
 
       <nav className="mt-16 grid gap-4 sm:grid-cols-2" aria-label="Trang nhật ký khác">
         {older ? (

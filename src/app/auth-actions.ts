@@ -76,7 +76,8 @@ export async function enterWithCode(_: FormState, fd: FormData): Promise<FormSta
     path: "/",
     maxAge: 60 * 60 * 24 * 365,
   });
-  redirect("/viet");
+  const next = str(fd, "next");
+  redirect(next.startsWith("/") && !next.startsWith("//") ? next : "/viet");
 }
 
 export async function logout() {

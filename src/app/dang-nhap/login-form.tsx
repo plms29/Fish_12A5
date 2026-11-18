@@ -4,10 +4,11 @@ import { useActionState } from "react";
 import { enterWithCode } from "@/app/auth-actions";
 import { Field, FormMessage, SubmitButton } from "@/components/form-bits";
 
-export function LoginForm() {
+export function LoginForm({ next }: { next?: string }) {
   const [state, action] = useActionState(enterWithCode, undefined);
   return (
     <form action={action} className="flex flex-col gap-5">
+      {next && <input type="hidden" name="next" value={next} />}
       <Field
         label="Tên của bạn"
         name="name"
